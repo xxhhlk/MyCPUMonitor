@@ -1,0 +1,9 @@
+Package: com.xxhhlk.cpumonitor
+Name: MyCPUMonitor
+Version: 0.0.2
+Architecture: iphoneos-arm
+Description: Monitor processes that use more than 0.8 of a CPU core for a certain period of time. No settings.
+Maintainer: xxhhlk
+Author: xxhhlk
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), com.cokepokes.libnotifications, ru.domo.cocoatop64, PlistBuddy

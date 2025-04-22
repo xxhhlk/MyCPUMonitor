@@ -1,0 +1,10 @@
+.theos/
+packages/
+.DS_Store
+obj/
+.libs/
+.deps/
+.build/
+*.deb
+*.swp
+*.pyc

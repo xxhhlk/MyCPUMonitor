@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+# Exit if any command fails
+set -e
+
+
+# ecsure is  purge or remove step
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    # Info.plist path
+    INFO_PLIST_PATH="/Applications/CocoaTop.app/Info.plist"
+
+    # Info.plist exists
+    if [ -f "$INFO_PLIST_PATH" ]; then
+        # delete SBAppUsesLocalNotifications key
+        /usr/libexec/PlistBuddy -c "Delete :SBAppUsesLocalNotifications" "$INFO_PLIST_PATH"
+        echo "Removed SBAppUsesLocalNotifications from Info.plist"
+    else
+        echo "Info.plist not found at $INFO_PLIST_PATH"
+    fi
+	uicache --all
+fi
+
+exit 0

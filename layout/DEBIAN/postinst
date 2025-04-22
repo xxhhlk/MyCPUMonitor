@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+# Exit if any command fails
+set -e
+
+# ensure is configure step
+if [ "$1" = "configure" ]; then
+    # Info.plist path
+    INFO_PLIST_PATH="/Applications/CocoaTop.app/Info.plist"
+
+    # Info.plist exist
+    if [ -f "$INFO_PLIST_PATH" ]; then
+        # SBAppUsesLocalNotifications key
+        /usr/libexec/PlistBuddy -c "Add :SBAppUsesLocalNotifications bool true" "$INFO_PLIST_PATH"
+        echo "Added SBAppUsesLocalNotifications to Info.plist"
+    else
+        echo "Info.plist not found at $INFO_PLIST_PATH"
+    fi
+	uicache --all
+fi
+
+exit 0

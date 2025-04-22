@@ -1,8 +1,8 @@
 # CPUMonitorTweak
 
-CPUMonitorTweak 是一个 iOS 越狱插件，用于监控设备上运行的进程的 CPU 使用率，并在检测到某些进程的 CPU 使用率过高时发送通知。在iPhone SE (2020) iOS13.4.1 成功运行
-**本项目由 AI 生成。**
-在 iPhone SE (2020) iOS13.4.1 上运行成功。
+CPUMonitorTweak 是一个 iOS 越狱插件，用于监控设备上运行的进程的 CPU 使用率，并在检测到某些进程的 CPU 使用率过高时发送通知。  
+**本项目由 AI 生成。**  
+在 iPhone SE (2020) iOS13.4.1 上编译并运行成功。  
 
 ## 功能
 
@@ -70,7 +70,7 @@ CPUMonitorTweak 是一个 iOS 越狱插件，用于监控设备上运行的进�
 
 ## 注意事项
 
-- 本插件依赖私有框架 `SpringBoardServices`，仅适用于越狱设备。
+- 本插件仅适用于越狱设备。
 - 插件可能会对设备性能产生一定影响，请根据需要调整检测间隔。A13 实测占用 CPU 非常低（单核心的3%以下）
 
 ## 许可

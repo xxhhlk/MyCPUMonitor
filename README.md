@@ -77,4 +77,3 @@ CPUMonitorTweak 是一个 iOS 越狱插件，用于监控设备上运行的进�
 
 - 本项目仅供教育和个人使用。不适用于在 BigBoss 或 Havoc 等公共软件源上重新分发。
 - 本项目遵循 MIT 许可证。详情请参阅 [LICENSE](LICENSE) 文件。
-```

@@ -91,14 +91,19 @@ static void deviceDidLockStateChange() {
 
 // 获取进程名称
 void getProcessName(pid_t pid, char *processName, size_t size) {
-    struct kinfo_proc procInfo;
-    size_t procInfoSize = sizeof(procInfo);
-    int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PID, pid};
+    // 使用 proc_name 函数获取进程名称，更好地支持 Unicode 字符
+    int result = proc_name(pid, processName, size);
+    if (result <= 0) {
+        // 如果 proc_name 失败，回退到原来的方法
+        struct kinfo_proc procInfo;
+        size_t procInfoSize = sizeof(procInfo);
+        int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PID, pid};
 
-    if (sysctl(mib, 4, &procInfo, &procInfoSize, NULL, 0) == 0 && procInfoSize > 0) {
-        strncpy(processName, procInfo.kp_proc.p_comm, size);
-    } else {
-        strncpy(processName, "Unknown", size);
+        if (sysctl(mib, 4, &procInfo, &procInfoSize, NULL, 0) == 0 && procInfoSize > 0) {
+            strncpy(processName, procInfo.kp_proc.p_comm, size);
+        } else {
+            strncpy(processName, "Unknown", size);
+        }
     }
 }
 
@@ -277,7 +282,13 @@ void monitorCPUUsage() {
 
                     if (newDuration >= 14) {
                         NSString *title = @"CPU 使用率通知";
-                        NSString *message = [NSString stringWithFormat:@"进程 %s 占用 CPU 较高", processName];
+                        // 明确指定UTF-8编码，避免中文乱码
+                        NSString *processNameStr = [NSString stringWithUTF8String:processName];
+                        if (!processNameStr) {
+                            // 如果UTF-8转换失败，尝试使用系统默认编码
+                            processNameStr = [NSString stringWithCString:processName encoding:NSStringEncodingConversionAllowLossy];
+                        }
+                        NSString *message = [NSString stringWithFormat:@"进程 %@ 占用 CPU 较高", processNameStr];
                         showNotification(title, message);
                         overThresholdDurations[pidKey] = @(0); // 重置计时器
                     }

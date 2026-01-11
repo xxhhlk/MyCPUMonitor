@@ -15,7 +15,7 @@ CPUMonitorTweak 是一个 iOS 越狱插件，用于监控设备上运行的进�
 1. 确保您的目标安装设备已越狱，开发设备安装了 Theos 环境。
 2. 克隆此项目到本地：
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/xxhhlk/MyCPUMonitor
    cd CPUMonitorTweak
    ```
 3. 编译并安装：
